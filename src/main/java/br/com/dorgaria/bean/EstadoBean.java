@@ -9,11 +9,12 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
+import org.omnifaces.util.Messages.Message;
 
 import br.com.drogaria.dao.EstadoDAO;
 import br.com.drogaria.domain.Estado;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 @ManagedBean
 @ViewScoped
 public class EstadoBean implements Serializable {
@@ -54,7 +55,7 @@ public class EstadoBean implements Serializable {
 		try {
 			EstadoDAO estadoDAO = new EstadoDAO();
 
-			estadoDAO.salvar(estado);
+			estadoDAO.merge(estado);
 
 			novo();
 			estados = estadoDAO.Listar();
@@ -81,5 +82,9 @@ public class EstadoBean implements Serializable {
 			Messages.addGlobalError("Ocorreu um erro ao Excluir o Estado!");
 			erro.printStackTrace();
 		}
+	}
+	public void editar(ActionEvent evento){
+		estado = (Estado)evento.getComponent().getAttributes().get("estadoSelecionado");
+		
 	}
 }	
