@@ -20,5 +20,9 @@ public class GenericDomain implements Serializable{
 	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	}
-	
+	//Essa parte tiro da internet na página OminiFaces = troquei id por codigo
+	 @Override
+	 public String toString() {
+	     return String.format("%s[codigo=%d]", getClass().getSimpleName(), getCodigo());
+	 }
 }
