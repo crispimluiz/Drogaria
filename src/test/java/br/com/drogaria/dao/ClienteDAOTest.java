@@ -2,9 +2,6 @@ package br.com.drogaria.dao;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.swing.text.SimpleAttributeSet;
 
 import org.junit.Test;
 

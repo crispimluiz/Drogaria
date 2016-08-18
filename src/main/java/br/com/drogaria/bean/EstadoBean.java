@@ -1,4 +1,4 @@
-package br.com.dorgaria.bean;
+package br.com.drogaria.bean;
 
 import java.io.Serializable;
 import java.util.List;
@@ -39,7 +39,7 @@ public class EstadoBean implements Serializable {
 	public void listar(){
 		try {
 			EstadoDAO estadoDAO = new EstadoDAO();
-			estados = estadoDAO.Listar();
+			estados = estadoDAO.Listar("nome");
 			
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar Listar o Estado!");

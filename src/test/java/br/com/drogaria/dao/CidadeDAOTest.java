@@ -71,7 +71,7 @@ public class CidadeDAOTest {
 		System.out.println("Nome do Estado: "+ cidade.getEstado().getNome());
 		System.out.println();
 	}
-	@Test
+	@Ignore
 	public void editar(){
 		Long codigoCidade = 13L;
 		Long codigoEstado = 1L;
@@ -104,5 +104,22 @@ public class CidadeDAOTest {
 		System.out.println("Sigla do Estado: "+ cidade.getEstado().getSigla());
 		System.out.println("Nome do Estado: "+ cidade.getEstado().getNome());
 		System.out.println();
+	}
+	@Test
+	public void buscarPorEstado(){
+		
+		Long estadoCodigo = 8L;
+		
+		CidadeDAO cidadeDAO = new CidadeDAO();
+		List<Cidade> resultado = cidadeDAO.buscarPorEstado(estadoCodigo);
+		
+		for(Cidade cidade: resultado){
+			System.out.println("Código da cidade: "+ cidade.getCodigo());
+			System.out.println("Nome da cidade: "+ cidade.getNome());
+			System.out.println("Código do Estado: "+ cidade.getEstado().getCodigo());
+			System.out.println("Sigla do Estado: "+ cidade.getEstado().getSigla());
+			System.out.println("Nome do Estado: "+ cidade.getEstado().getNome());
+			System.out.println();
+		}
 	}
 }

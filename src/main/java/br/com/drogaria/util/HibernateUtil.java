@@ -7,6 +7,8 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtil {
+	
+	//Fabrica de sessões
 	private static SessionFactory fabricaDeSessoes = criarFabricaDeSessoes();
 
 	public static SessionFactory getFabricaDeSessoes() {

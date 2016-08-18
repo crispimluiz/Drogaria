@@ -7,18 +7,23 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Estados</title>
+	<h:outputScript library="js" name="scripts.js" />
 </h:head>
 <h:body>
 	<p:growl id="mensagem" />
 
-	<h:form id = "formListagem">
+	<h:form id="formListagem">
 		<p:panel header="Estados - Listagem">
-			<p:dataTable id = "tabela" emptyMessage="Nenhum registro encontrado."
+			<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
 				paginator="true" value="#{estadoBean.estados}" var="estado" rows="5">
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
-						actionListener="#{estadoBean.novo}" update=":formCadastro:painel" />
+						actionListener="#{estadoBean.novo}" update=":formCadastro:painel">
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</f:facet>
+
 
 				<p:column headerText="Nome" sortBy="#{estado.nome}"
 					filterBy="#{estado.nome}">
@@ -32,16 +37,19 @@
 
 				<p:column headerText="Opções">
 					<p:commandButton icon="ui-icon-trash"
-						actionListener="#{estadoBean.excluir}" 
+						actionListener="#{estadoBean.excluir}"
 						update=":mensagem :formListagem:tabela">
 						<p:confirm header="Confirmação" message="Deseja excluir o estado?"
 							icon="ui-icon-alert" />
 						<f:attribute name="estadoSelecionado" value="#{estado}" />
 					</p:commandButton>
-					<p:commandButton icon = "ui-icon-pencil"
-						actionListener="#{estadoBean.editar}" update = ":formCadastro:painel"
-						oncomplete="PF('dialogo').show();">
+
+					<p:commandButton icon="ui-icon-pencil"
+						actionListener="#{estadoBean.editar}"
+						update=":formCadastro:painel" oncomplete="PF('dialogo').show();">
 						<f:attribute name="estadoSelecionado" value="#{estado}" />
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
@@ -59,13 +67,15 @@
 		draggable="false" resizable="false" modal="true" closable="false">
 		<h:form id="formCadastro">
 			<h:panelGrid id="painel" columns="2">
-				<p:outputLabel value="Nome:" />
-				<p:inputText maxlength="50" size="30"
-					value="#{estadoBean.estado.nome}" />
+				<p:outputLabel for="nome" value="Nome:" />
+				<p:inputText id="nome" maxlength="50" size="30"
+					value="#{estadoBean.estado.nome}" required="true"
+					requiredMessage="Preencha o 'Nome' do Estado!" />
 
-				<p:outputLabel value="Sigla:" />
-				<p:inputText maxlength="2" size="10"
-					value="#{estadoBean.estado.sigla}" />
+				<p:outputLabel for="sigla" value="Sigla:" />
+				<p:inputText id="sigla" maxlength="2" size="10"
+					value="#{estadoBean.estado.sigla}" required="true"
+					requiredMessage="Preencha a 'Sigla' do Estado!" />
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
